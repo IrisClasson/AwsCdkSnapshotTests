@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stack matches snapshot 1`] = `
+Object {
+  "Parameters": Object {
+    "AssetParameterse951c62d3eda10e9a5aab2473108127ec0d75e9ff73683a344461b7b5b982ec6ArtifactHash160E35B5": Object {
+      "Description": "Artifact hash for asset \\"e951c62d3eda10e9a5aab2473108127ec0d75e9ff73683a344461b7b5b982ec6\\"",
+      "Type": "String",
+    },
+    "AssetParameterse951c62d3eda10e9a5aab2473108127ec0d75e9ff73683a344461b7b5b982ec6S3Bucket44F82F7D": Object {
+      "Description": "S3 bucket for asset \\"e951c62d3eda10e9a5aab2473108127ec0d75e9ff73683a344461b7b5b982ec6\\"",
+      "Type": "String",
+    },
+    "AssetParameterse951c62d3eda10e9a5aab2473108127ec0d75e9ff73683a344461b7b5b982ec6S3VersionKey82384293": Object {
+      "Description": "S3 key for asset version \\"e951c62d3eda10e9a5aab2473108127ec0d75e9ff73683a344461b7b5b982ec6\\"",
+      "Type": "String",
+    },
+  },
+  "Resources": Object {
+    "somebucketEB8B213F": Object {
+      "DeletionPolicy": "Retain",
+      "Metadata": Object {
+        "aws:cdk:path": "SnapshotTestExampleStack/somebucket/Resource",
+      },
+      "Properties": Object {
+        "PublicAccessBlockConfiguration": Object {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true,
+        },
+      },
+      "Type": "AWS::S3::Bucket",
+      "UpdateReplacePolicy": "Retain",
+    },
+    "stringlength7E456EDB": Object {
+      "DependsOn": Array [
+        "stringlengthServiceRoleD792339E",
+      ],
+      "Metadata": Object {
+        "aws:asset:path": "asset.e951c62d3eda10e9a5aab2473108127ec0d75e9ff73683a344461b7b5b982ec6.zip",
+        "aws:asset:property": "Code",
+        "aws:cdk:path": "SnapshotTestExampleStack/stringlength/Resource",
+      },
+      "Properties": Object {
+        "Code": Object {
+          "S3Bucket": Object {
+            "Ref": "AssetParameterse951c62d3eda10e9a5aab2473108127ec0d75e9ff73683a344461b7b5b982ec6S3Bucket44F82F7D",
+          },
+          "S3Key": Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                Object {
+                  "Fn::Select": Array [
+                    0,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameterse951c62d3eda10e9a5aab2473108127ec0d75e9ff73683a344461b7b5b982ec6S3VersionKey82384293",
+                        },
+                      ],
+                    },
+                  ],
+                },
+                Object {
+                  "Fn::Select": Array [
+                    1,
+                    Object {
+                      "Fn::Split": Array [
+                        "||",
+                        Object {
+                          "Ref": "AssetParameterse951c62d3eda10e9a5aab2473108127ec0d75e9ff73683a344461b7b5b982ec6S3VersionKey82384293",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+        "Handler": "ExampleHandler::ExampleHandler.Function::FunctionHandler",
+        "Role": Object {
+          "Fn::GetAtt": Array [
+            "stringlengthServiceRoleD792339E",
+            "Arn",
+          ],
+        },
+        "Runtime": "dotnetcore2.1",
+      },
+      "Type": "AWS::Lambda::Function",
+    },
+    "stringlengthServiceRoleD792339E": Object {
+      "Metadata": Object {
+        "aws:cdk:path": "SnapshotTestExampleStack/stringlength/ServiceRole/Resource",
+      },
+      "Properties": Object {
+        "AssumeRolePolicyDocument": Object {
+          "Statement": Array [
+            Object {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": Object {
+                "Service": "lambda.amazonaws.com",
+              },
+            },
+          ],
+          "Version": "2012-10-17",
+        },
+        "ManagedPolicyArns": Array [
+          Object {
+            "Fn::Join": Array [
+              "",
+              Array [
+                "arn:",
+                Object {
+                  "Ref": "AWS::Partition",
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+              ],
+            ],
+          },
+        ],
+      },
+      "Type": "AWS::IAM::Role",
+    },
+  },
+}
+`;
