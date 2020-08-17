@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# CDK out folder
+/cdk.out/*
+
+# Temp template folder
+/template/*
+
 # User-specific files
 *.rsuser
 *.suo
